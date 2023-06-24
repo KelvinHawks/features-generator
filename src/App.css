@@ -77,6 +77,7 @@ body{
   color: #fff;
   font-size: 40px;
   font-weight: 700;
+  color: green;
 }
 .image-section .meme-footer{
   position: absolute;
@@ -85,10 +86,12 @@ body{
   color: #fff;
   font-size: 40px;
   font-weight: 700;
+  color: green;
 }
 .image-section h2{
   visibility: hidden;
   z-index: 999;
+  
 }
 .image-section:hover h2{
   visibility: visible;
