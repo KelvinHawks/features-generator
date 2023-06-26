@@ -1,15 +1,22 @@
-import Memes from "./Data";
-import React,  {useState} from "react";
+//import Memes from "./Data";
+import React,  {useEffect, useState} from "react";
 export default function Content(){
   const [image, setImage] = useState({
-    topText: "",
-    bottomText: "",
-    randomImage: "./images/mt-fuji.jpg"
+    randomImage: "http://i.imgflip.com/1bij.jpg"
   })
   const[naming, setNaming] = useState({
     firstName: '',
     secondName: ''
   })
+  
+
+
+ 
+  useEffect(()=>{
+     fetch("https://api.imgflip.com/get_memes")
+      .then(res=> res.json())
+      .then(data=>setImage(data.data.memes))
+  },[])
 
   function handleChange(e){
     const{name, value} = e.target
@@ -18,16 +25,17 @@ export default function Content(){
         [name]: value
     }))
   }
-
-        function handleClick(){
-            let arr = Memes.map(meme=>meme.img)
-            
-            const memesArray = Math.floor(Math.random() * arr.length)
-            setImage(prevState=> ({
-                ...prevState, 
-                randomImage: arr[memesArray]
-            }))
-        }
+console.log(image);
+ 
+  function handleClick(){
+      let memesArr = image
+      const randomNumber = Math.floor(Math.random() * memesArr.length)
+      const url = memesArr[randomNumber].url
+      setImage(prevState=> ({
+          ...prevState, 
+          randomImage: url
+      }))
+  }
 
     return(
     <div className="container-div-content">
